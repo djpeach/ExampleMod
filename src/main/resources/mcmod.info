@@ -1,0 +1,20 @@
+[
+  {
+    "modid": "examplemod",
+    "name": "Example Mod",
+    "description": "A set of examples",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "djpeach"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": [
+      ""
+    ]
+  }
+]
