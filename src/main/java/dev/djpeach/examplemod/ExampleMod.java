@@ -104,7 +104,9 @@ public class ExampleMod {
          */
         @SubscribeEvent
         public static void addBlocks(RegistryEvent.Register<Block> event) {
-
+            Block myRock = new Block(Material.ROCK);
+            myRock.setHardness(0.1f);
+            event.getRegistry().register(myRock);
         }
     }
 }
