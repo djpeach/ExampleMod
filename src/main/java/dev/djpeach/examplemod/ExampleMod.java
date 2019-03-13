@@ -3,9 +3,12 @@ package dev.djpeach.examplemod;
 import dev.djpeach.examplemod.proxy.SideProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -87,7 +90,7 @@ public class ExampleMod {
      */
     @GameRegistry.ObjectHolder(MOD_ID)
     public static class Items {
-
+        public static final ItemBlock myRock = null;
     }
 
     /**
@@ -115,10 +118,19 @@ public class ExampleMod {
          */
         @SubscribeEvent
         public static void addBlocks(RegistryEvent.Register<Block> event) {
-            Blocks.myRock.setHardness(0.1f);
-            Blocks.myRock.setCreativeTab(CreativeTabs.MATERIALS);
-            Blocks.myRock.setRegistryName(MOD_ID,"myrock");
-            event.getRegistry().register(new Block(Material.ROCK));
+            Block myRock = new Block(Material.ROCK);
+            myRock.setHardness(0.1f);
+            myRock.setCreativeTab(CreativeTabs.MATERIALS);
+            myRock.setRegistryName(MOD_ID,"myrock");
+            event.getRegistry().register(myRock);
+        }
+
+        /**
+         * Fired when the ModelLoader is ready to register events
+         */
+        @SubscribeEvent
+        public static void addModels(ModelRegistryEvent event) {
+            ModelLoader.setCustomModelResourceLocation(Items.myRock, 0, new ModelResourceLocation(Blocks.myRock.getRegistryName(), "inventory"));
         }
     }
 }
