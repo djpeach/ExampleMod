@@ -2,9 +2,13 @@ package dev.djpeach.examplemod;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -95,9 +99,9 @@ public class ExampleMod {
         public static void addItems(RegistryEvent.Register<Item> event) {
             Item basketball = new Item();
             basketball.setMaxStackSize(2);
-            basketball.setTranslationKey(MOD_ID + "basketball");
+            basketball.setTranslationKey("basketball");
             basketball.setCreativeTab(CreativeTabs.MATERIALS);
-            event.getRegistry().register(basketball);
+            event.getRegistry().register(basketball.setRegistryName("basketball"));
         }
 
         /**
