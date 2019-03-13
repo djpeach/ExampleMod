@@ -93,7 +93,11 @@ public class ExampleMod {
          */
         @SubscribeEvent
         public static void addItems(RegistryEvent.Register<Item> event) {
-
+            Item basketball = new Item();
+            basketball.setMaxStackSize(2);
+            basketball.setTranslationKey(MOD_ID + "basketball");
+            basketball.setCreativeTab(CreativeTabs.MATERIALS);
+            event.getRegistry().register(basketball);
         }
 
         /**

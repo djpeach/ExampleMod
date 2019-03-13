@@ -1,0 +1,1 @@
+Using these docs: https://mcforge.readthedocs.io/en/latest/items/items/#basic-items to create basic items
