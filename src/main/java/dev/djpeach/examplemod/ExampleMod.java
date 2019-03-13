@@ -74,7 +74,7 @@ public class ExampleMod {
      */
     @GameRegistry.ObjectHolder(MOD_ID)
     public static class Blocks {
-        public static Block myRock = null;
+        public static final Block myRock = null;
     }
 
     /**
@@ -104,7 +104,7 @@ public class ExampleMod {
          */
         @SubscribeEvent
         public static void addItems(RegistryEvent.Register<Item> event) {
-            event.getRegistry().register(new ItemBlock(Blocks.myRock).setRegistryName(MOD_ID, "myRock"));
+            event.getRegistry().register(new ItemBlock(Blocks.myRock).setRegistryName(MOD_ID, "myrock"));
         }
 
         /**
@@ -115,11 +115,10 @@ public class ExampleMod {
          */
         @SubscribeEvent
         public static void addBlocks(RegistryEvent.Register<Block> event) {
-            Blocks.myRock = new Block(Material.ROCK);
             Blocks.myRock.setHardness(0.1f);
             Blocks.myRock.setCreativeTab(CreativeTabs.MATERIALS);
-            Blocks.myRock.setRegistryName("Rock");
-            event.getRegistry().register(Blocks.myRock);
+            Blocks.myRock.setRegistryName(MOD_ID,"myrock");
+            event.getRegistry().register(new Block(Material.ROCK));
         }
     }
 }
