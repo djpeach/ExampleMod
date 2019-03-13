@@ -1,10 +1,13 @@
 package dev.djpeach.examplemod;
 
+import dev.djpeach.examplemod.proxy.SideProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -22,12 +25,20 @@ public class ExampleMod {
     public static final String MOD_ID = "examplemod";
     public static final String MOD_NAME = "Example Mod";
     public static final String VERSION = "1.0-SNAPSHOT";
+    public static final String CLIENT_PROXY = "dev.djpeach.examplemod.proxy.ClientSideProxy";
+    public static final String SERVER_PROXY = "dev.djpeach.examplemod.proxy.ServerSideProxy";
 
     /**
      * This is the instance of your mod as created by Forge. It will never be null.
      */
     @Mod.Instance(MOD_ID)
     public static ExampleMod INSTANCE;
+
+    /**
+     * This will use the right class based on the physical side
+     */
+    @SidedProxy(clientSide = CLIENT_PROXY, serverSide = SERVER_PROXY)
+    public static SideProxy proxy;
 
     /**
      * This is the first initialization event. Register tile entities here.
@@ -63,7 +74,7 @@ public class ExampleMod {
      */
     @GameRegistry.ObjectHolder(MOD_ID)
     public static class Blocks {
-
+        public static Block myRock = null;
     }
 
     /**
@@ -93,7 +104,7 @@ public class ExampleMod {
          */
         @SubscribeEvent
         public static void addItems(RegistryEvent.Register<Item> event) {
-
+            event.getRegistry().register(new ItemBlock(Blocks.myRock).setRegistryName(MOD_ID, "myRock"));
         }
 
         /**
@@ -104,10 +115,11 @@ public class ExampleMod {
          */
         @SubscribeEvent
         public static void addBlocks(RegistryEvent.Register<Block> event) {
-            Block myRock = new Block(Material.ROCK);
-            myRock.setHardness(0.1f);
-            myRock.setCreativeTab(CreativeTabs.MATERIALS);
-            event.getRegistry().register(myRock);
+            Blocks.myRock = new Block(Material.ROCK);
+            Blocks.myRock.setHardness(0.1f);
+            Blocks.myRock.setCreativeTab(CreativeTabs.MATERIALS);
+            Blocks.myRock.setRegistryName("Rock");
+            event.getRegistry().register(Blocks.myRock);
         }
     }
 }
