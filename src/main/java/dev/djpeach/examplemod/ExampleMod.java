@@ -106,6 +106,7 @@ public class ExampleMod {
         public static void addBlocks(RegistryEvent.Register<Block> event) {
             Block myRock = new Block(Material.ROCK);
             myRock.setHardness(0.1f);
+            myRock.setCreativeTab(CreativeTabs.MATERIALS);
             event.getRegistry().register(myRock);
         }
     }
