@@ -1,6 +1,8 @@
 package dev.djpeach.examplemod;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -55,24 +57,26 @@ public class ExampleMod {
     /**
      * Forge will automatically look up and bind blocks to the fields in this class
      * based on their registry name.
+     *
+     * e.g.:
+     *      public static final MySpecialBlock mySpecialBlock = null; // placeholder for special block below
      */
     @GameRegistry.ObjectHolder(MOD_ID)
     public static class Blocks {
-      /*
-          public static final MySpecialBlock mySpecialBlock = null; // placeholder for special block below
-      */
+
     }
 
     /**
      * Forge will automatically look up and bind items to the fields in this class
      * based on their registry name.
+     *
+     * e.g.:
+     *      public static final ItemBlock mySpecialBlock = null; // itemblock for the block above
+     *      public static final MySpecialItem mySpecialItem = null; // placeholder for special item below
      */
     @GameRegistry.ObjectHolder(MOD_ID)
     public static class Items {
-      /*
-          public static final ItemBlock mySpecialBlock = null; // itemblock for the block above
-          public static final MySpecialItem mySpecialItem = null; // placeholder for special item below
-      */
+
     }
 
     /**
@@ -82,32 +86,25 @@ public class ExampleMod {
     public static class ObjectRegistryHandler {
         /**
          * Listen for the register event for creating custom items
+         *
+         * e.g.:
+         *      event.getRegistry().register(new ItemBlock(Blocks.myBlock).setRegistryName(MOD_ID, "myBlock"));
+         *      event.getRegistry().register(new MySpecialItem().setRegistryName(MOD_ID, "mySpecialItem"));
          */
         @SubscribeEvent
         public static void addItems(RegistryEvent.Register<Item> event) {
-           /*
-             event.getRegistry().register(new ItemBlock(Blocks.myBlock).setRegistryName(MOD_ID, "myBlock"));
-             event.getRegistry().register(new MySpecialItem().setRegistryName(MOD_ID, "mySpecialItem"));
-            */
+
         }
 
         /**
          * Listen for the register event for creating custom blocks
+         *
+         * e.g.:
+         *      event.getRegistry().register(new MySpecialBlock().setRegistryName(MOD_ID, "mySpecialBlock"));
          */
         @SubscribeEvent
         public static void addBlocks(RegistryEvent.Register<Block> event) {
-           /*
-             event.getRegistry().register(new MySpecialBlock().setRegistryName(MOD_ID, "mySpecialBlock"));
-            */
+
         }
     }
-    /* EXAMPLE ITEM AND BLOCK - you probably want these in separate files
-    public static class MySpecialItem extends Item {
-
-    }
-
-    public static class MySpecialBlock extends Block {
-
-    }
-    */
 }
