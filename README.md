@@ -1,0 +1,1 @@
+Using the docs here: https://mcforge.readthedocs.io/en/latest/blocks/blocks/#basic-blocks to mess around with basic blocks
